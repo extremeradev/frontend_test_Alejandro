@@ -44,7 +44,7 @@ src/
 │   └── hooks/             # Custom hooks
 │       └── __tests__/
 ├── App.tsx
-└── index.tsx
+└── main.tsx
 ```
 
 Los tests se colocan en directorios `__tests__` junto al código fuente que prueban.
@@ -53,10 +53,10 @@ Los tests se colocan en directorios `__tests__` junto al código fuente que prue
 
 ```bash
 # Construir la imagen
-docker build -t mobile-device-shop .
+docker build -t frontend_test_Alejandro .
 
 # Ejecutar el contenedor
-docker run -p 3000:3000 mobile-device-shop
+docker run -p 3000:3000 frontend_test_Alejandro
 ```
 
 ## API
