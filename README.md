@@ -53,10 +53,10 @@ Los tests se colocan en directorios `__tests__` junto al código fuente que prue
 
 ```bash
 # Construir la imagen
-docker build -t frontend_test_Alejandro .
+docker build -t frontend_test_alejandro .
 
 # Ejecutar el contenedor
-docker run -p 3000:3000 frontend_test_Alejandro
+docker run -p 3000:3000 frontend_test_alejandro
 ```
 
 ## API
