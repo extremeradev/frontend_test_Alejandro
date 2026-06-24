@@ -26,16 +26,14 @@ src/
 ├── core/
 │   ├── domain/
 │   │   ├── models/        # Product, CartItem, etc.
-│   │   ├── services/      # ProductService, CartService
 │   │   └── __tests__/     # Tests de dominio
 │   └── application/
 │       └── ports/         # Interfaces (ProductRepository, CartRepository)
 ├── infrastructure/
 │   ├── api/               # Adaptadores de API (productApi, cartApi)
 │   │   └── __tests__/
-│   ├── storage/           # Adaptadores de persistencia (caching con expiración 1h)
-│   │   └── __tests__/
-│   └── di/                # Inyección de dependencias
+│   └── storage/           # Adaptadores de persistencia (caching con expiración 1h)
+│       └── __tests__/
 ├── presentation/
 │   ├── components/        # Componentes UI (Header, SearchBar, ProductList, etc.)
 │   │   └── __tests__/
