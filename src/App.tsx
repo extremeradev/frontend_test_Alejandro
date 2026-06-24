@@ -2,13 +2,17 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Layout from './presentation/components/Layout/Layout'
 import PLP from './presentation/pages/PLP/PLP'
 import PDP from './presentation/pages/PDP/PDP'
+import { useSelector } from 'react-redux'
+import type { RootState } from './infrastructure/store/store'
+import { useEffect } from 'react'
 
-// Componente principal de la aplicación
-// Configura el enrutador con dos rutas:
-//   /            → PLP (lista de productos)
-//   /product/:id → PDP (detalle del producto)
-// Ambas comparten el mismo Layout (Header + contenido)
 function App() {
+  const theme = useSelector((state: RootState) => state.theme)
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme)
+  },[theme])
+  
   return (
     <BrowserRouter>
       <Routes>

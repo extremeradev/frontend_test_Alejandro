@@ -1,56 +1,62 @@
-// Importa las funciones de vitest para definir tests
 import { describe, it, expect } from 'vitest'
-// render: monta un componente React en un DOM virtual
-// screen: permite buscar elementos en el DOM renderizado
 import { render, screen } from '@testing-library/react'
-// MemoryRouter: router falso que no depende del navegador
 import { MemoryRouter } from 'react-router-dom'
+import { Provider } from 'react-redux'
+import { configureStore } from '@reduxjs/toolkit'
+import cartReducer from '../../../../infrastructure/store/cartSlice'
+import themeReducer from '../../../../infrastructure/store/themeSlice'
 import Header from '../Header'
 
-// Grupo de tests para el componente Header
+const store = configureStore({
+  reducer: { cart: cartReducer, theme: themeReducer },
+})
+
 describe('Header', () => {
-  // Verifica que el logo y el enlace "Inicio" se muestran siempre
   it('muestra el logo y enlace a inicio', () => {
     render(
-      <MemoryRouter>
-        <Header />
-      </MemoryRouter>
+      <Provider store={store}>
+        <MemoryRouter>
+          <Header />
+        </MemoryRouter>
+      </Provider>
     )
 
     expect(screen.getByText('Shop')).toBeInTheDocument()
     expect(screen.getByText('Inicio')).toBeInTheDocument()
   })
 
-  // Verifica que en la ruta /product/:id se muestra el breadcrumb "Producto"
   it('muestra breadcrumb de producto en PDP', () => {
     render(
-      <MemoryRouter initialEntries={['/product/123']}>
-        <Header />
-      </MemoryRouter>
+      <Provider store={store}>
+        <MemoryRouter initialEntries={['/product/123']}>
+          <Header />
+        </MemoryRouter>
+      </Provider>
     )
 
     expect(screen.getByText('Inicio')).toBeInTheDocument()
     expect(screen.getByText('Producto')).toBeInTheDocument()
   })
 
-  // Verifica que en la ruta / NO se muestra el breadcrumb "Producto"
   it('no muestra breadcrumb de producto en PLP', () => {
     render(
-      <MemoryRouter initialEntries={['/']}>
-        <Header />
-      </MemoryRouter>
+      <Provider store={store}>
+        <MemoryRouter initialEntries={['/']}>
+          <Header />
+        </MemoryRouter>
+      </Provider>
     )
 
-    // queryByText devuelve null si no encuentra el texto (no lanza error)
     expect(screen.queryByText('Producto')).not.toBeInTheDocument()
   })
 
-  // Verifica que el icono del carrito se muestra
   it('muestra el contador del carrito', () => {
     render(
-      <MemoryRouter>
-        <Header />
-      </MemoryRouter>
+      <Provider store={store}>
+        <MemoryRouter>
+          <Header />
+        </MemoryRouter>
+      </Provider>
     )
 
     expect(screen.getByText(/🛒/)).toBeInTheDocument()

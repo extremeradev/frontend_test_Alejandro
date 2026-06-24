@@ -1,0 +1,35 @@
+.toast {
+  position: fixed;      /* se mantiene fijo en la pantalla al hacer scroll */
+  bottom: 1.5rem;
+  right: 1.5rem;
+  background: #22c55e;   /* verde para indicar éxito */
+  color: #fff;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.5rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  /* Aparece deslizándose (0.3s) y a los 1.7s se desvanece (0.3s) */
+  animation: slideIn 0.3s ease, fadeOut 0.3s ease 1.7s forwards;
+  z-index: 1000;          /* siempre por encima de otros elementos */
+}
+
+/* Animación de entrada: sube desde abajo */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animación de salida: se desvanece hacia arriba */
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    transform: translateY(-0.5rem);
+  }
+}
