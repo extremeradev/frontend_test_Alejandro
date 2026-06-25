@@ -9,13 +9,20 @@ interface SearchBarProps {
 // Barra de búsqueda para filtrar productos por marca o modelo
 // El filtrado se hace en tiempo real conforme el usuario escribe
 function SearchBar({ value, onChange }: SearchBarProps) {
-  return <input
-      className={styles.input}
-      type="text"
-      placeholder="Buscar por marca o modelo..."
-      value={value}
-      onChange={(e) => onChange(e.target.value)}
-    />
+  return (
+    <div className={styles.wrapper}>
+      <div className={styles.inputGroup}>
+        <span className={styles.icon}>🔍</span>
+        <input
+          className={styles.input}
+          type="text"
+          placeholder="Buscar por marca o modelo..."
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+        />
+      </div>
+    </div>
+  )
 }
 
 export default SearchBar

@@ -1,13 +1,44 @@
 .card {
   position: relative;
-  border: 1px solid var(--border);
   border-radius: 0.75rem;
   overflow: hidden;
   background: var(--card-bg);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
   opacity: 0;
   transform: translateY(1rem);
-  transition: opacity 0.5s ease, transform 0.5s ease, box-shadow 0.3s, border-color 0.3s;
+  transition: opacity 0.5s ease, transform 0.5s ease, box-shadow 0.3s;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(
+    transparent 0deg, transparent 300deg,
+    var(--accent) 360deg
+  );
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: 0;
+}
+
+.card:hover::before {
+  opacity: 1;
+  animation: neonRotate 2s linear infinite;
+}
+
+@keyframes neonRotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.card:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  transform: translateY(-0.25rem);
 }
 
 .link {
@@ -15,12 +46,12 @@
   color: inherit;
   display: flex;
   flex-direction: column;
-}
-
-.card:hover {
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-  border-color: var(--accent);
-  transform: translateY(-0.25rem);
+  position: relative;
+  z-index: 1;
+  background: var(--card-bg);
+  margin: 2px;
+  border-radius: inherit;
+  overflow: hidden;
 }
 
 .visible {

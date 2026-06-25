@@ -18,7 +18,7 @@ function Header() {
     <header className={styles.header}>
       <div className={styles.left}>
         <Link to="/" className={styles.logo}>
-          <img src="/cdnlogo.com_react.png" alt="" className={styles.logoIcon} />
+          <img src="/React.png" alt="" className={styles.logoIcon} />
           <span className={styles.logoText}>SHOP</span>
         </Link>
         <div className={styles.separator} />
